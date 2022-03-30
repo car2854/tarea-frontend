@@ -1,0 +1,30 @@
+
+.container .form-div{
+  padding: 50px;
+  margin: auto;
+  width: 700px;
+  margin-top: 120px;
+}
+
+.container .form-div h1{
+  margin-bottom: 18px;
+}
+
+.container .form-div .form-group{
+  margin-block: 12px;
+}
+
+.container .button-form{
+  text-align: center;
+  margin-top: 25px;
+}
+
+.container .button-form button{
+  width: 220px;
+}
+
+.alert{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
