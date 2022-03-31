@@ -28,3 +28,16 @@
   top: 0px;
   width: 100%;
 }
+
+.error{
+  color: red;
+}
+
+.input-main{
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputError{
+  border: 1px solid red;
+}

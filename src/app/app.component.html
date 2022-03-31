@@ -1,6 +1,10 @@
 
-<div class="alert alert-success" role="alert" *ngIf="success">
+<div class="alert alert-success" role="alert" *ngIf="isSuccess">
   Se a registrado correctamente
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="isError">
+  {{messageError}}
 </div>
 
 <div class="container">
@@ -11,24 +15,42 @@
       <div class="row">
         
         <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" class="form-control" formControlName="name">
+          <div class="input-main">
+            <label>Nombre</label>
+            <span class="error" *ngIf="verifyValidation('name')">El nombre es requerido</span>
+          </div>
+          <input type="text" class="form-control" [ngClass]="{'inputError': verifyValidation('name')}" formControlName="name">
         </div>
         
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" class="form-control" formControlName="email">
+          <div class="input-main">
+            <label>Email</label>
+            <span class="error" *ngIf="verifyValidation('email')">El email es invalido</span>
+          </div>
+          <input type="email" class="form-control" [ngClass]="{'inputError': verifyValidation('email')}" formControlName="email">
         </div>
         
         <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" formControlName="password">
+          <div class="input-main">
+            <label>Password</label>
+            <span class="error" *ngIf="verifyValidation('password')">La contraseña es requerida</span>
+          </div>
+          <input type="password" class="form-control" [ngClass]="{'inputError': verifyValidation('password')}" formControlName="password">
         </div>
         
-        <div class="button-form">
-          <button type="submit" class="btn btn-primary">Guardar</button>
-        </div>
-  
+        <ng-container *ngIf="isSubmit; else elseIsLoading">
+          <div class="button-form">
+            <button type="submit" class="btn btn-primary" disabled>Cargando...</button>
+          </div>
+        </ng-container>
+        <ng-template #elseIsLoading>
+          <div class="button-form">
+            <button type="submit" class="btn btn-primary" [ngClass]="{'disabled': userForm.invalid}">Guardar</button>
+          </div>
+        </ng-template>
+        
+
+
       </div>
     </form>
   </div>
