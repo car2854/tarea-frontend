@@ -17,9 +17,9 @@ export class AppComponent {
   public messageError: string[] = [];
 
   public userForm = this.fb.group({
-    name:     ['Maria', [Validators.required]],
-    email:    ['Maria@g', [Validators.required, Validators.email]],
-    password: ['123456', [Validators.required]],
+    name:     ['', [Validators.required]],
+    email:    ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
   });
 
   constructor(
