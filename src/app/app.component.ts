@@ -14,12 +14,12 @@ export class AppComponent {
   public isError: boolean = false;
   public isSubmit: boolean = false;
 
-  public messageError: string = '';
+  public messageError: string[] = [];
 
   public userForm = this.fb.group({
-    name:     ['', [Validators.required]],
-    email:    ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    name:     ['Maria', [Validators.required]],
+    email:    ['Maria@g', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required]],
   });
 
   constructor(
@@ -49,7 +49,20 @@ export class AppComponent {
         error: (err:any) => {
           console.log(err);
 
-          if (err.error.msg) this.messageError = err.error.msg;
+          console.log(this.messageError);
+          
+          this.messageError = [];
+
+          if (err.error.msg) this.messageError.push(err.error.msg);
+          if (err.status === 400){
+
+            const propertyNames = Object.keys(err.error.errors);
+            
+            for (let index = 0; index < propertyNames.length; index++) {
+               this.messageError.push(err.error.errors[propertyNames[index]].msg);
+               
+            }
+          }
           
           this.isSubmit = false;
           this.isError = true;

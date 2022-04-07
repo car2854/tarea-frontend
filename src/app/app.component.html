@@ -1,10 +1,12 @@
 
-<div class="alert alert-success" role="alert" *ngIf="isSuccess">
+<div class="alert alert-success" role="alert" *ngIf="isSuccess">  
   Se a registrado correctamente
 </div>
 
 <div class="alert alert-danger" role="alert" *ngIf="isError">
-  {{messageError}}
+  <p class="message-error" *ngFor="let messageErr of messageError">
+    {{messageErr}}
+  </p>
 </div>
 
 <div class="container">

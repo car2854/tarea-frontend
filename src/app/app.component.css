@@ -41,3 +41,8 @@
 .inputError{
   border: 1px solid red;
 }
+
+.message-error{
+  padding: 0px;
+  margin: 0px;
+}
