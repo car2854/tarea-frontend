@@ -1,0 +1,60 @@
+
+<div class="alert alert-success" role="alert" *ngIf="isSuccess">  
+  Se a registrado correctamente
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="isError">
+  <p class="message-error" *ngFor="let messageErr of messageError">
+    {{messageErr}}
+  </p>
+</div>
+
+<div class="container">
+  <div class="form-div">
+    <h1 class="text-center">Registros de Usuarios</h1>
+  
+    <form autocomplete="off" (submit)="createUser()" [formGroup]="userForm">
+      <div class="row">
+        
+        <div class="form-group">
+          <div class="input-main">
+            <label>Nombre</label>
+            <span class="error" *ngIf="verifyValidation('name')">El nombre es requerido</span>
+          </div>
+          <input type="text" class="form-control" [ngClass]="{'inputError': verifyValidation('name')}" formControlName="name">
+        </div>
+        
+        <div class="form-group">
+          <div class="input-main">
+            <label>Email</label>
+            <span class="error" *ngIf="verifyValidation('email')">El email es invalido</span>
+          </div>
+          <input type="email" class="form-control" [ngClass]="{'inputError': verifyValidation('email')}" formControlName="email">
+        </div>
+        
+        <div class="form-group">
+          <div class="input-main">
+            <label>Password</label>
+            <span class="error" *ngIf="verifyValidation('password')">La contraseña es requerida</span>
+          </div>
+          <input type="password" class="form-control" [ngClass]="{'inputError': verifyValidation('password')}" formControlName="password">
+        </div>
+        
+        <ng-container *ngIf="isSubmit; else elseIsLoading">
+          <div class="button-form">
+            <button type="submit" class="btn btn-primary" disabled>Cargando...</button>
+          </div>
+        </ng-container>
+        <ng-template #elseIsLoading>
+          <div class="button-form">
+            <button type="submit" class="btn btn-primary" [ngClass]="{'disabled': userForm.invalid}">Guardar</button>
+          </div>
+        </ng-template>
+        
+
+
+      </div>
+    </form>
+  </div>
+
+</div>

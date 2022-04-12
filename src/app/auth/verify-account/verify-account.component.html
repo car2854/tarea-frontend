@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand">Verificacion de cuenta</a>
+</nav>
+
+<ng-container *ngIf="isLoading; else elseLoading">
+  <p class="text-center">Cargando...</p>
+</ng-container>
+<ng-template #elseLoading>
+  <p class="text-center">Se a verificado correctamente</p>
+</ng-template>
+

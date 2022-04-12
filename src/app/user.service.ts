@@ -18,4 +18,15 @@ export class UserService {
     return this.http.post(`${base_url}/user`, data);
   }
 
+  public verifyAccount = (token: any) => {
+
+    const header = {
+      headers: {
+        'x-token': token
+      }
+    }
+
+    return this.http.put(`${base_url}/user/verificarCuenta`, null, header);
+  }
+
 }
